@@ -44,9 +44,9 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ipTextField.setText("ip address");
+        ipTextField.setColumns(10);
+        ipTextField.setText("127.0.0.1");
         ipTextField.setToolTipText("");
-        ipTextField.setMinimumSize(new java.awt.Dimension(40, 18));
         ipTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 ipTextFieldFocusGained(evt);
@@ -54,7 +54,8 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
         });
         topPane.add(ipTextField);
 
-        portTextField.setText("port");
+        portTextField.setColumns(5);
+        portTextField.setText("12345");
         portTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 portTextFieldFocusGained(evt);
@@ -62,6 +63,7 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
         });
         topPane.add(portTextField);
 
+        passwordField.setColumns(10);
         passwordField.setText("password");
         passwordField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
