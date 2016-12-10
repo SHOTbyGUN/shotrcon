@@ -2,6 +2,7 @@ package org.shotrcon.client.ui;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import javax.swing.DefaultListModel;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
@@ -31,6 +32,22 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        userPane = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        playerJList = new javax.swing.JList<>();
+        userPaneControlPane = new javax.swing.JPanel();
+        toBlueButton = new javax.swing.JButton();
+        toRedButton = new javax.swing.JButton();
+        kickButton = new javax.swing.JButton();
+        banButton = new javax.swing.JButton();
+        refreshUsersButton = new javax.swing.JButton();
+        mapPane = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        mapJList = new javax.swing.JList<>();
+        changeMapButton = new javax.swing.JButton();
+        midPane = new javax.swing.JPanel();
         topPane = new javax.swing.JPanel();
         ipTextField = new javax.swing.JTextField();
         portTextField = new javax.swing.JTextField();
@@ -39,10 +56,129 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
         botPane = new javax.swing.JPanel();
         inputTextField = new javax.swing.JTextField();
         sendButton = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        midMidPane = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
         consoleTextPane = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1200, 700));
+
+        userPane.setPreferredSize(new java.awt.Dimension(300, 600));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Players");
+
+        playerJList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(playerJList);
+
+        userPaneControlPane.setPreferredSize(new java.awt.Dimension(143, 100));
+
+        toBlueButton.setText("Blue");
+        toBlueButton.setPreferredSize(new java.awt.Dimension(60, 24));
+        toBlueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toBlueButtonActionPerformed(evt);
+            }
+        });
+        userPaneControlPane.add(toBlueButton);
+
+        toRedButton.setText("Red");
+        toRedButton.setPreferredSize(new java.awt.Dimension(60, 24));
+        toRedButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toRedButtonActionPerformed(evt);
+            }
+        });
+        userPaneControlPane.add(toRedButton);
+
+        kickButton.setText("Kick");
+        kickButton.setPreferredSize(new java.awt.Dimension(60, 24));
+        kickButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kickButtonActionPerformed(evt);
+            }
+        });
+        userPaneControlPane.add(kickButton);
+
+        banButton.setText("Ban");
+        banButton.setPreferredSize(new java.awt.Dimension(60, 24));
+        banButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                banButtonActionPerformed(evt);
+            }
+        });
+        userPaneControlPane.add(banButton);
+
+        refreshUsersButton.setText("Refresh");
+        refreshUsersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshUsersButtonActionPerformed(evt);
+            }
+        });
+        userPaneControlPane.add(refreshUsersButton);
+
+        javax.swing.GroupLayout userPaneLayout = new javax.swing.GroupLayout(userPane);
+        userPane.setLayout(userPaneLayout);
+        userPaneLayout.setHorizontalGroup(
+            userPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
+            .addGroup(userPaneLayout.createSequentialGroup()
+                .addComponent(userPaneControlPane, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        userPaneLayout.setVerticalGroup(
+            userPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userPaneLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userPaneControlPane, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        mapPane.setPreferredSize(new java.awt.Dimension(200, 400));
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Maps");
+
+        mapJList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(mapJList);
+
+        changeMapButton.setText("Change Map");
+        changeMapButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeMapButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mapPaneLayout = new javax.swing.GroupLayout(mapPane);
+        mapPane.setLayout(mapPaneLayout);
+        mapPaneLayout.setHorizontalGroup(
+            mapPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(changeMapButton, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        mapPaneLayout.setVerticalGroup(
+            mapPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mapPaneLayout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(changeMapButton))
+        );
+
+        topPane.setMinimumSize(new java.awt.Dimension(400, 30));
 
         ipTextField.setColumns(10);
         ipTextField.setText("127.0.0.1");
@@ -68,6 +204,11 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
         passwordField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 passwordFieldFocusGained(evt);
+            }
+        });
+        passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordFieldKeyPressed(evt);
             }
         });
         topPane.add(passwordField);
@@ -112,25 +253,67 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        consoleTextPane.setFocusable(false);
-        jScrollPane2.setViewportView(consoleTextPane);
+        consoleTextPane.setMaximumSize(new java.awt.Dimension(400, 400));
+        consoleTextPane.setMinimumSize(new java.awt.Dimension(100, 100));
+        consoleTextPane.setPreferredSize(new java.awt.Dimension(300, 300));
+        jScrollPane3.setViewportView(consoleTextPane);
+
+        javax.swing.GroupLayout midMidPaneLayout = new javax.swing.GroupLayout(midMidPane);
+        midMidPane.setLayout(midMidPaneLayout);
+        midMidPaneLayout.setHorizontalGroup(
+            midMidPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(midMidPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
+        );
+        midMidPaneLayout.setVerticalGroup(
+            midMidPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(midMidPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout midPaneLayout = new javax.swing.GroupLayout(midPane);
+        midPane.setLayout(midPaneLayout);
+        midPaneLayout.setHorizontalGroup(
+            midPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(midMidPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(midPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(topPane, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(botPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        midPaneLayout.setVerticalGroup(
+            midPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(midPaneLayout.createSequentialGroup()
+                .addComponent(topPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(midMidPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(botPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(topPane, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(userPane, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(midPane, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mapPane, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(topPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(userPane, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(mapPane, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+            .addComponent(midPane, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
         );
 
         pack();
@@ -167,18 +350,64 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
         passwordField.selectAll();
     }//GEN-LAST:event_passwordFieldFocusGained
 
+    private void refreshUsersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshUsersButtonActionPerformed
+        onRefreshPlayers();
+    }//GEN-LAST:event_refreshUsersButtonActionPerformed
+
+    private void toBlueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toBlueButtonActionPerformed
+        onChangeTeamBlue();
+    }//GEN-LAST:event_toBlueButtonActionPerformed
+
+    private void toRedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toRedButtonActionPerformed
+        onChangeTeamRed();
+    }//GEN-LAST:event_toRedButtonActionPerformed
+
+    private void kickButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kickButtonActionPerformed
+        onKickPlayer();
+    }//GEN-LAST:event_kickButtonActionPerformed
+
+    private void banButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_banButtonActionPerformed
+        onBanPlayer();
+    }//GEN-LAST:event_banButtonActionPerformed
+
+    private void changeMapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeMapButtonActionPerformed
+        onChangeMap();
+    }//GEN-LAST:event_changeMapButtonActionPerformed
+
+    private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            onToggleConnect();
+    }//GEN-LAST:event_passwordFieldKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton banButton;
     private javax.swing.JPanel botPane;
+    private javax.swing.JButton changeMapButton;
     private javax.swing.JTextPane consoleTextPane;
     private javax.swing.JTextField inputTextField;
     private javax.swing.JTextField ipTextField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton kickButton;
+    private javax.swing.JList<String> mapJList;
+    private javax.swing.JPanel mapPane;
+    private javax.swing.JPanel midMidPane;
+    private javax.swing.JPanel midPane;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JList<String> playerJList;
     private javax.swing.JTextField portTextField;
+    private javax.swing.JButton refreshUsersButton;
     private javax.swing.JButton sendButton;
+    private javax.swing.JButton toBlueButton;
+    private javax.swing.JButton toRedButton;
     private javax.swing.JButton toggleConnect;
     private javax.swing.JPanel topPane;
+    private javax.swing.JPanel userPane;
+    private javax.swing.JPanel userPaneControlPane;
     // End of variables declaration//GEN-END:variables
 
     
@@ -187,6 +416,13 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
     protected abstract void onToggleConnect();
     protected abstract void onUpArrow();
     protected abstract void onDownArrow();
+    protected abstract void onRefreshPlayers();
+    protected abstract void onChangeMap();
+    protected abstract void onKickPlayer();
+    protected abstract void onBanPlayer();
+    protected abstract void onChangeTeamBlue();
+    protected abstract void onChangeTeamRed();
+    
     
     
     /**
@@ -250,5 +486,31 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
     
     public void setToggleConnectButtonText(String text) {
         toggleConnect.setText(text);
+    }
+    
+    public String getSelectedPlayer() {
+        return playerJList.getSelectedValue();
+    }
+    
+    public void setPlayerList(String[] playerListArray) {
+        DefaultListModel<String> model = new DefaultListModel<>();
+        for(int i = 0; i < playerListArray.length; i++) {
+            model.add(i, playerListArray[i]);
+        }
+        playerJList.setModel(model);
+        playerJList.clearSelection();
+    }
+    
+    public int getSelectedMap() {
+        return mapJList.getSelectedIndex();
+    }
+    
+    public void setMapList(String[] mapNameArray) {
+        DefaultListModel<String> model = new DefaultListModel<>();
+        for(int i = 0; i < mapNameArray.length; i++) {
+            model.add(i, mapNameArray[i]);
+        }
+        mapJList.setModel(model);
+        mapJList.clearSelection();
     }
 }

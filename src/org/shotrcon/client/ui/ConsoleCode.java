@@ -1,8 +1,10 @@
 package org.shotrcon.client.ui;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import net.kronos.rkon.core.Rcon;
+import org.shotrcon.client.MapList;
 
 /**
  *
@@ -10,10 +12,28 @@ import net.kronos.rkon.core.Rcon;
  */
 public class ConsoleCode extends ConsoleUI {
     
+    public static final int BLUEFOR = 0;
+    public static final int REDFOR = 1;
+    public static final String SIDECHANGESTRING = " PlayerAlliance ";
+    
     private final LinkedList<String> lastCommands = new LinkedList<>();
     private Iterator lastCommandsIterator;
     //private boolean connected = false;
     private Rcon rcon;
+    
+    private final MapList mapList;
+    
+    public ConsoleCode() {
+        super();
+        mapList = new MapList();
+        try {
+            mapList.readMapList();
+            setMapList(mapList.getMapNames());
+        } catch (Exception ex) {
+            printError(ex.toString());
+        }
+    }
+    
 
     @Override
     protected void onSend() {
@@ -29,7 +49,6 @@ public class ConsoleCode extends ConsoleUI {
             
             // print input & clear inputField
             setInputText("");
-            printInput(inputText);
 
             // Add input to lastCommands
             lastCommands.add(inputText);
@@ -37,17 +56,9 @@ public class ConsoleCode extends ConsoleUI {
             // Reset lastCommandsIterator
             lastCommandsIterator = null;
 
-            // Test if we are connected
-            if (!connected()) {
-                printError("not connected");
-                return;
-            }
+            sendCommand(inputText);
             
-            // send rcon message
-            String response = rcon.command(inputText);
             
-            // print response
-            printResponse(response);
             
         } catch (Exception ex) {
             printError(ex.toString());
@@ -101,7 +112,13 @@ public class ConsoleCode extends ConsoleUI {
     
     public void connect() {
         try {
+            // try to connect
             rcon = new Rcon(getIpAddress(), getPort(), getPassword().getBytes());
+            // Set keepalive
+            rcon.getSocket().setKeepAlive(true);
+            // initial refresh playerlist
+            onRefreshPlayers();
+            
         } catch (Exception ex) {
             printError(ex.toString());
         } finally {
@@ -117,6 +134,96 @@ public class ConsoleCode extends ConsoleUI {
             return false;
         else
             return true;
+    }
+
+    @Override
+    protected void onRefreshPlayers() {
+        
+        final String clientListRequest = "display_all_clients";
+        final String clientListResponseStartsWith = "Client List :";
+        
+        try {
+            String response = sendCommand(clientListRequest);
+            if(response.startsWith(clientListResponseStartsWith)) {
+
+                String clientListString = response.replaceFirst(clientListResponseStartsWith, "").trim();
+                String[] clientsArray = clientListString.split("\n");
+
+                setPlayerList(clientsArray);
+            } else {
+                setPlayerList(new String[] {"unknown"});
+            }
+        } catch (Exception ex) {
+            printError(ex.toString());
+        }
+        
+    }
+    
+    public String sendCommand(String commandLine) throws IOException {
+        // Test if we are connected
+        if (!connected()) {
+            printError("not connected");
+            return null;
+        }
+
+        // print command we are about to send
+        printInput(commandLine);
+
+        // Send rcon command
+        String response = rcon.command(commandLine);
+
+        // Print response
+        printResponse(response);
+
+        // return response
+        return response;
+    }
+
+    @Override
+    protected void onChangeMap() {
+        try {
+            
+            sendCommand("setsvar Map " + mapList.getVariableName(getSelectedMap()));
+            
+        } catch (Exception ex) {
+            printError(ex.toString());
+        }
+    }
+    
+    public String getClientID(String playerName) {
+        return playerName.split(" ")[0];
+    }
+
+    @Override
+    protected void onKickPlayer() {
+        try {
+            sendCommand("kick " + getClientID(getSelectedPlayer()));
+        } catch (Exception ex) {
+            printError(ex.toString());
+        }
+    }
+
+    @Override
+    protected void onBanPlayer() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected void onChangeTeamBlue() {
+        try {
+            sendCommand("setpvar " + getClientID(getSelectedPlayer()) + SIDECHANGESTRING + BLUEFOR);
+        } catch (Exception ex) {
+            printError(ex.toString());
+        }
+    }
+
+    @Override
+    protected void onChangeTeamRed() {
+        try {
+            sendCommand("setpvar " + getClientID(getSelectedPlayer()) + SIDECHANGESTRING + REDFOR);
+        } catch (Exception ex) {
+            printError(ex.toString());
+        }
     }
     
     
