@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import net.kronos.rkon.core.Rcon;
-import org.shotrcon.client.MapList;
+import org.shotrcon.client.CSVList;
+import org.shotrcon.client.TimedTask;
 
 /**
  *
  * @author shotbygun
  */
-public class ConsoleCode extends ConsoleUI {
+public class ConsoleCode extends ConsoleUI implements Runnable {
     
     public static final int BLUEFOR = 0;
     public static final int REDFOR = 1;
@@ -21,13 +22,15 @@ public class ConsoleCode extends ConsoleUI {
     //private boolean connected = false;
     private Rcon rcon;
     
-    private final MapList mapList;
+    private final CSVList mapList;
+    private final TimedTask timedTask;
     
     public ConsoleCode() {
         super();
-        mapList = new MapList();
+        mapList = new CSVList();
+        timedTask = new TimedTask(this);
         try {
-            mapList.readMapList();
+            mapList.readCSVList("org/shotrcon/client/data/DefaultMapList.csv");
             setMapList(mapList.getMapNames());
         } catch (Exception ex) {
             printError(ex.toString());
@@ -105,6 +108,9 @@ public class ConsoleCode extends ConsoleUI {
                 rcon.disconnect();
             rcon = null;
             printInput("disconnected");
+            
+            // stop timer
+            timedTask.stop();
         } catch (Exception ex) {
             printError(ex.toString());
         }
@@ -159,7 +165,7 @@ public class ConsoleCode extends ConsoleUI {
         
     }
     
-    public String sendCommand(String commandLine) throws IOException {
+    public synchronized String sendCommand(String commandLine) throws IOException {
         // Test if we are connected
         if (!connected()) {
             printError("not connected");
@@ -174,6 +180,9 @@ public class ConsoleCode extends ConsoleUI {
 
         // Print response
         printResponse(response);
+        
+        // Reset timer
+        timedTask.resetTimer();
 
         // return response
         return response;
@@ -224,6 +233,15 @@ public class ConsoleCode extends ConsoleUI {
         } catch (Exception ex) {
             printError(ex.toString());
         }
+    }
+
+    /*
+        This will be run if no command sent for 60 seconds
+        There will be unnotified connection timeout if we don't keep line open
+    */
+    @Override
+    public void run() {
+        onRefreshPlayers();
     }
     
     

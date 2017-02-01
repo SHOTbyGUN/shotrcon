@@ -32,6 +32,7 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         userPane = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -48,20 +49,20 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
         mapJList = new javax.swing.JList<>();
         changeMapButton = new javax.swing.JButton();
         midPane = new javax.swing.JPanel();
-        topPane = new javax.swing.JPanel();
-        ipTextField = new javax.swing.JTextField();
-        portTextField = new javax.swing.JTextField();
-        passwordField = new javax.swing.JPasswordField();
-        toggleConnect = new javax.swing.JButton();
         botPane = new javax.swing.JPanel();
         inputTextField = new javax.swing.JTextField();
         sendButton = new javax.swing.JButton();
         midMidPane = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         consoleTextPane = new javax.swing.JTextPane();
+        topPane = new javax.swing.JPanel();
+        ipTextField = new javax.swing.JTextField();
+        portTextField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
+        toggleConnect = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 700));
+        setPreferredSize(new java.awt.Dimension(900, 500));
 
         userPane.setPreferredSize(new java.awt.Dimension(300, 600));
 
@@ -128,7 +129,7 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
             .addGroup(userPaneLayout.createSequentialGroup()
-                .addComponent(userPaneControlPane, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addComponent(userPaneControlPane, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
                 .addContainerGap())
         );
         userPaneLayout.setVerticalGroup(
@@ -136,10 +137,12 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
             .addGroup(userPaneLayout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userPaneControlPane, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jTabbedPane1.addTab("Players", userPane);
 
         mapPane.setPreferredSize(new java.awt.Dimension(200, 400));
 
@@ -165,7 +168,7 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
         mapPaneLayout.setHorizontalGroup(
             mapPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(changeMapButton, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+            .addComponent(changeMapButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         mapPaneLayout.setVerticalGroup(
@@ -173,10 +176,82 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
             .addGroup(mapPaneLayout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(changeMapButton))
         );
+
+        jTabbedPane1.addTab("Maps", mapPane);
+
+        inputTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputTextFieldKeyPressed(evt);
+            }
+        });
+
+        sendButton.setText("Send");
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout botPaneLayout = new javax.swing.GroupLayout(botPane);
+        botPane.setLayout(botPaneLayout);
+        botPaneLayout.setHorizontalGroup(
+            botPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botPaneLayout.createSequentialGroup()
+                .addComponent(inputTextField)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sendButton))
+        );
+        botPaneLayout.setVerticalGroup(
+            botPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botPaneLayout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(botPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sendButton))
+                .addContainerGap())
+        );
+
+        consoleTextPane.setMaximumSize(new java.awt.Dimension(400, 400));
+        consoleTextPane.setMinimumSize(new java.awt.Dimension(100, 100));
+        consoleTextPane.setPreferredSize(new java.awt.Dimension(300, 300));
+        jScrollPane3.setViewportView(consoleTextPane);
+
+        javax.swing.GroupLayout midMidPaneLayout = new javax.swing.GroupLayout(midMidPane);
+        midMidPane.setLayout(midMidPaneLayout);
+        midMidPaneLayout.setHorizontalGroup(
+            midMidPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, midMidPaneLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        midMidPaneLayout.setVerticalGroup(
+            midMidPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(midMidPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout midPaneLayout = new javax.swing.GroupLayout(midPane);
+        midPane.setLayout(midPaneLayout);
+        midPaneLayout.setHorizontalGroup(
+            midPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(midMidPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        midPaneLayout.setVerticalGroup(
+            midPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(midPaneLayout.createSequentialGroup()
+                .addComponent(midMidPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jTabbedPane1.addTab("Console", midPane);
 
         topPane.setMinimumSize(new java.awt.Dimension(400, 30));
 
@@ -221,99 +296,19 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
         });
         topPane.add(toggleConnect);
 
-        inputTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                inputTextFieldKeyPressed(evt);
-            }
-        });
-
-        sendButton.setText("Send");
-        sendButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout botPaneLayout = new javax.swing.GroupLayout(botPane);
-        botPane.setLayout(botPaneLayout);
-        botPaneLayout.setHorizontalGroup(
-            botPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(botPaneLayout.createSequentialGroup()
-                .addComponent(inputTextField)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sendButton))
-        );
-        botPaneLayout.setVerticalGroup(
-            botPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botPaneLayout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(botPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sendButton))
-                .addContainerGap())
-        );
-
-        consoleTextPane.setMaximumSize(new java.awt.Dimension(400, 400));
-        consoleTextPane.setMinimumSize(new java.awt.Dimension(100, 100));
-        consoleTextPane.setPreferredSize(new java.awt.Dimension(300, 300));
-        jScrollPane3.setViewportView(consoleTextPane);
-
-        javax.swing.GroupLayout midMidPaneLayout = new javax.swing.GroupLayout(midMidPane);
-        midMidPane.setLayout(midMidPaneLayout);
-        midMidPaneLayout.setHorizontalGroup(
-            midMidPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(midMidPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3)
-                .addContainerGap())
-        );
-        midMidPaneLayout.setVerticalGroup(
-            midMidPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(midMidPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout midPaneLayout = new javax.swing.GroupLayout(midPane);
-        midPane.setLayout(midPaneLayout);
-        midPaneLayout.setHorizontalGroup(
-            midPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(midMidPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(midPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(topPane, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(botPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        midPaneLayout.setVerticalGroup(
-            midPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(midPaneLayout.createSequentialGroup()
-                .addComponent(topPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(midMidPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(userPane, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(midPane, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mapPane, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
+            .addComponent(topPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(userPane, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(mapPane, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
-            .addComponent(midPane, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(topPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
         );
 
         pack();
@@ -392,6 +387,7 @@ public abstract class ConsoleUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton kickButton;
     private javax.swing.JList<String> mapJList;
     private javax.swing.JPanel mapPane;

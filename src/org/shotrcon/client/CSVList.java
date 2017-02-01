@@ -15,17 +15,18 @@ import java.util.ArrayList;
  *
  * @author shotbygun
  */
-public class MapList {
+public class CSVList {
     
-    private ArrayList<String> mapNames, variableNames;
+    private ArrayList<String> keyNames, variableNames;
     
-    public MapList() {
-        mapNames = new ArrayList<>();
+    public CSVList() {
+        keyNames = new ArrayList<>();
         variableNames = new ArrayList<>();
     }
     
-    public void readMapList() throws IOException {
-        InputStream inputStream = this.getClass().getResourceAsStream("DefaultMapList.txt"); 
+    public void readCSVList(String path) throws IOException {
+        //InputStream inputStream = this.getClass().getResourceAsStream("DefaultMapList.txt");
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         
         String line;
@@ -37,8 +38,11 @@ public class MapList {
                 break;
             slice = line.split(":");
             variableNames.add(slice[0].trim());
-            mapNames.add(slice[1].trim());
+            keyNames.add(slice[1].trim());
         }
+        
+        if(keyNames.size() < 1)
+            throw new IOException("no rows readed from: " + path);
     }
     
     public String getVariableName(int selection) {
@@ -47,7 +51,7 @@ public class MapList {
     
     public String[] getMapNames() {
         String[] maps = new String[variableNames.size()];
-        return mapNames.toArray(maps);
+        return keyNames.toArray(maps);
     }
     
 }
