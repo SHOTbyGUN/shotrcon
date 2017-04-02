@@ -3,6 +3,8 @@ package org.shotrcon.client.ui;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import net.kronos.rkon.core.Rcon;
 import org.shotrcon.client.CSVList;
 import org.shotrcon.client.TimedTask;
@@ -16,6 +18,7 @@ public class ConsoleCode extends ConsoleUI implements Runnable {
     public static final int BLUEFOR = 0;
     public static final int REDFOR = 1;
     public static final String SIDECHANGESTRING = " PlayerAlliance ";
+    public static final String[] BANLENGTHOPTIONS = new String[] {"Hour","Day","Week","Month","Permanent"};
     
     private final LinkedList<String> lastCommands = new LinkedList<>();
     private Iterator lastCommandsIterator;
@@ -214,7 +217,45 @@ public class ConsoleCode extends ConsoleUI implements Runnable {
 
     @Override
     protected void onBanPlayer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        // This is quick and dirty way to do this
+        // Feel free to improve
+        
+        final String selectedPlayer = getSelectedPlayer();
+        final String clientID = getClientID(selectedPlayer);
+        
+        // Show options hour / day / week etc...
+        JFrame frame = new JFrame("Ban player");
+        String selectedOption = (String) JOptionPane.showInputDialog(frame, 
+            selectedPlayer,
+            "Select length for ban",
+            JOptionPane.QUESTION_MESSAGE, 
+            null, 
+            BANLENGTHOPTIONS, 
+            BANLENGTHOPTIONS[0]);
+        
+        int banLength;
+        
+        // Parse return string to ban length
+        if(selectedOption.equals(BANLENGTHOPTIONS[0]))
+            banLength = 1;
+        else if(selectedOption.equals(BANLENGTHOPTIONS[1]))
+            banLength = 24;
+        else if(selectedOption.equals(BANLENGTHOPTIONS[2]))
+            banLength = 24*7;
+        else if(selectedOption.equals(BANLENGTHOPTIONS[3]))
+            banLength = 24*7*4;
+        else if(selectedOption.equals(BANLENGTHOPTIONS[4]))
+            banLength = 0;
+        else
+            return;
+        
+        try {
+            sendCommand("ban " + clientID + " " + banLength);
+        } catch (Exception ex) {
+            printError(ex.toString());
+        }
+            
     }
 
     @Override
